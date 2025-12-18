@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Swargaloka Nusantara | AI Lingkungan</title>
+
+<!-- ================= CSS ================= -->
+<style>
+* { box-sizing: border-box; }
+body {
+    margin:0;
+    font-family:"Segoe UI", sans-serif;
+    background: linear-gradient(#eef6f1,#e1efe8);
+    color:#333;
+}
+/* LOGIN */
+.login {height:100vh; display:flex; justify-content:center; align-items:center;}
+.login-card {
+    background:#fff; width:360px; padding:32px; border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.12); text-align:center;
+}
+.login-card h2{color:#2e8b57;}
+.login-card p{font-size:14px;color:#666;}
+.login-card input{
+    width:100%;padding:12px;margin-top:12px;border-radius:6px;border:1px solid #ccc;
+}
+.login-card button{
+    margin-top:20px;width:100%;padding:12px;
+    background-color:#2e8b57;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:bold;
+}
+
+/* DASHBOARD */
+.dashboard{display:none;}
+header{
+    background:linear-gradient(90deg,#1f7a59,#3cb371);
+    color:white;padding:30px;text-align:center;
+}
+.container{max-width:1100px;margin:auto;padding:35px 20px;}
+.section{background:white;margin-bottom:30px;padding:30px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+.section h2{color:#2e8b57;margin-top:0;}
+.section p{line-height:1.7;text-align:justify;}
+.upload-box{text-align:center;}
+.preview{max-width:300px;margin-top:15px;display:none;border-radius:8px;}
+.image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:20px;}
+.image-card{border-radius:10px;overflow:hidden;cursor:pointer;transition:transform 0.3s;}
+.image-card:hover{transform:translateY(-5px);}
+.image-card img{width:100%;height:180px;object-fit:cover;}
+.image-card p{padding:12px;font-weight:bold;background:#f4f7f6;}
+.result-box{background:#e6f4ec;border-left:6px solid #2e8b57;padding:20px;border-radius:6px;margin-top:25px;font-size:18px;}
+.education-box{background:#fdfefe;padding:20px;border-radius:6px;margin-top:15px;box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+footer{background:#1f7a59;color:white;text-align:center;padding:20px;}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+    <div class="login-card">
+        <h2>🌿 Swargaloka Nusantara</h2>
+        <p>Klasifikasi Lingkungan Berbasis AI & Edukasi Sosial</p>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button onclick="login()">Masuk</button>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<header>
+<h1>🌏 Swargaloka Nusantara</h1>
+<p>Klasifikasi Lingkungan Berbasis AI + Edukasi Sosial + IPTEK</p>
+</header>
+
+<div class="container">
+
+<!-- FILOSOFI & SOSIOLOGI -->
+<div class="section">
+<h2>🌺 Filosofi & Sosiologi</h2>
+<p>
+Nusantara dikenal sebagai Swargaloka karena kekayaan alamnya yang memengaruhi kehidupan sosial masyarakat. 
+Kearifan lokal mendorong komunitas untuk hidup selaras dengan alam melalui sistem adat, gotong royong, dan pembagian sumber daya yang berkelanjutan.
+</p>
+</div>
+
+<!-- GEOGRAFI -->
+<div class="section">
+<h2>🗺️ Geografi</h2>
+<p>
+Wilayah Nusantara yang terdiri dari ribuan pulau memiliki ekosistem berbeda mulai dari hutan tropis, pegunungan, hingga terumbu karang. 
+Kondisi geografis ini mendukung keanekaragaman hayati yang tinggi dan menjadi laboratorium alam bagi ilmu pengetahuan.
+</p>
+</div>
+
+<!-- SEJARAH -->
+<div class="section">
+<h2>📜 Sejarah</h2>
+<p>
+Sejak zaman kerajaan hingga kolonial, masyarakat Nusantara mengelola alam secara berkelanjutan. 
+Contohnya, sistem subak di Bali, hutan larangan di Sumatera, dan tradisi konservasi pesisir di Maluku. 
+Sejarah ini membentuk pola sosial dan ekonomi lokal.
+</p>
+</div>
+
+<!-- EKONOMI -->
+<div class="section">
+<h2>💰 Ekonomi</h2>
+<p>
+Pemanfaatan sumber daya alam yang bijaksana menjadi fondasi ekonomi lokal, seperti pertanian organik, perikanan berkelanjutan, dan ekowisata. 
+Teknologi dan AI kini membantu meningkatkan efisiensi sekaligus menjaga kelestarian lingkungan.
+</p>
+</div>
+
+<!-- IPTEK -->
+<div class="section">
+<h2>🤖 IPTEK & AI</h2>
+<p>
+Kecerdasan Buatan (AI) digunakan untuk mengklasifikasikan kondisi lingkungan dari citra visual, mendeteksi pencemaran, dan memberikan rekomendasi sosial. 
+Ini merupakan perpaduan antara tradisi Nusantara dengan teknologi modern demi pembangunan berkelanjutan.
+</p>
+</div>
+
+<!-- UPLOAD -->
+<div class="section upload-box">
+<h2>📷 Analisis Gambar Lingkungan / Produk</h2>
+<input type="file" id="uploadImage" accept="image/*">
+<br>
+<img id="preview" class="preview">
+<br><br>
+<button onclick="analyzeUpload()">Analisis AI</button>
+</div>
+
+<!-- CONTOH GAMBAR -->
+<div class="section">
+<h2>🖼️ Contoh Lingkungan Swargaloka Nusantara</h2>
+<div class="image-grid">
+<div class="image-card" onclick="analyzeSample('eco')">
+<img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9">
+<p>Lingkungan Alami</p>
+</div>
+<div class="image-card" onclick="analyzeSample('plastic')">
+<img src="https://images.unsplash.com/photo-1581579186989-30a5f5a8c9f7">
+<p>Sampah Plastik</p>
+</div>
+<div class="image-card" onclick="analyzeSample('polluted')">
+<img src="https://images.unsplash.com/photo-1503596476-1c12a8ba09b9">
+<p>Lingkungan Tercemar</p>
+</div>
+</div>
+</div>
+
+<!-- HASIL AI -->
+<div class="result-box" id="result">🧠 Hasil AI akan muncul di sini</div>
+<div class="education-box" id="education">Edukasi sosial, ekonomi, dan IPTEK akan muncul di sini</div>
+
+</div>
+
+<footer>
+© 2025 Swargaloka Nusantara — Teknologi untuk Alam & Kehidupan
+</footer>
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+function login(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("dashboard").style.display="block";
+}
+
+// Preview gambar upload
+const upload=document.getElementById("uploadImage");
+if(upload){
+    upload.addEventListener("change",function(){
+        const file=this.files[0];
+        const preview=document.getElementById("preview");
+        preview.src=URL.createObjectURL(file);
+        preview.style.display="block";
+    });
+}
+
+// Analisis AI simulasi upload
+function analyzeUpload(){
+    showResult(
+        "🧠 AI Result: Produk / Lingkungan Ramah 🌱",
+        "AI mendeteksi produk/lingkungan ini mendukung kelestarian alam Swargaloka Nusantara."
+    );
+}
+
+// Analisis AI contoh
+function analyzeSample(type){
+    if(type==="eco"){
+        showResult(
+            "🧠 AI Result: Lingkungan Alami 🌿",
+            "Lingkungan alami adalah warisan budaya & sejarah yang harus dijaga."
+        );
+    }
+    if(type==="plastic"){
+        showResult(
+            "🧠 AI Result: Sampah Plastik 🧴",
+            "Sampah plastik mengancam ekosistem dan kesehatan masyarakat."
+        );
+    }
+    if(type==="polluted"){
+        showResult(
+            "🧠 AI Result: Lingkungan Tercemar 🚨",
+            "Pencemaran lingkungan berdampak pada sosial, ekonomi, dan kesehatan."
+        );
+    }
+}
+
+function showResult(resultText, eduText){
+    document.getElementById("result").innerHTML=resultText;
+    document.getElementById("education").innerHTML=eduText;
+}
+</script>
+
+</body>
+</html>
